@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>User Registration</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name">
+        <div *ngIf="formControls.name.invalid && (formControls.name.dirty || formControls.name.touched)">
+          <small *ngIf="formControls.name.errors?.required">Name is required.</small>
+          <small *ngIf="formControls.name.errors?.minlength">Name must be at least 3 characters long.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email">
+        <div *ngIf="formControls.email.invalid && (formControls.email.dirty || formControls.email.touched)">
+          <small *ngIf="formControls.email.errors?.required">Email is required.</small>
+          <small *ngIf="formControls.email.errors?.email">Invalid email format.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        <div *ngIf="formControls.password.invalid && (formControls.password.dirty || formControls.password.touched)">
+          <small *ngIf="formControls.password.errors?.required">Password is required.</small>
+          <small *ngIf="formControls.password.errors?.minlength">Password must be at least 6 characters long.</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    </form>
+  </div>
+  
